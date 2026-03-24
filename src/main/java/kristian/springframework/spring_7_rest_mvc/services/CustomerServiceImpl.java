@@ -11,7 +11,9 @@ import java.util.*;
 @Slf4j
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
     private final Map<UUID, Customer> customerMap;
+
 
     public CustomerServiceImpl() {
         this.customerMap = new HashMap<>();
@@ -79,5 +81,11 @@ public class CustomerServiceImpl implements CustomerService {
         Customer existingCustomer = customerMap.get(customerId);
         existingCustomer.setName(customer.getName());
         existingCustomer.setLastModifiedDate(LocalDateTime.now());
+    }
+
+
+    @Override
+    public void deleteCustomerById(UUID customerId) {
+        customerMap.remove(customerId);
     }
 }

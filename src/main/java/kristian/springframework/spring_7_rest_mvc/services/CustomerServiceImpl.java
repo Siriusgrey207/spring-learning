@@ -4,6 +4,7 @@ package kristian.springframework.spring_7_rest_mvc.services;
 import kristian.springframework.spring_7_rest_mvc.model.Customer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -45,6 +46,16 @@ public class CustomerServiceImpl implements CustomerService {
         customerMap.put(customer1.getId(), customer1);
         customerMap.put(customer2.getId(), customer2);
         customerMap.put(customer3.getId(), customer3);
+    }
+
+
+    @Override
+    public void patchCustomerById(UUID customerId, Customer customer) {
+        Customer existingCustomer = customerMap.get(customerId);
+
+        if (StringUtils.hasText(customer.getName())) {
+            existingCustomer.setName(customer.getName());
+        }
     }
 
 

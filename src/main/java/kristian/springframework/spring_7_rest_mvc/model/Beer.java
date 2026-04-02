@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tools.jackson.databind.annotation.JsonDeserialize;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 // The beer model is what is going to be returned from our RESTful API.
 
+@JsonDeserialize(builder = Beer.BeerBuilder.class)
 @Data
 @Builder
 @NoArgsConstructor
